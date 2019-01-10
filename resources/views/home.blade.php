@@ -3,12 +3,12 @@
 @section('content')
 <div class="container">
     <h1 align="center">文章區</h1>
+    @if (session('status'))
+        <div class="alert alert-success" role="alert">
+            {{ session('status') }}
+        </div>
+    @endif
     <div class="row justify-content-center">
-        @if (session('status'))
-            <div class="alert alert-success" role="alert">
-                {{ session('status') }}
-            </div>
-        @endif
         @foreach ($blogs as $blogData)
             <div class="col-md-8">
                 <div class="card">
