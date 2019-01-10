@@ -7,7 +7,7 @@
             @csrf
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">標題</label>
-                    <input class="form-control" type="text" name="title" rows="1" value="{{ $article->title }}">
+                    <input class="form-control" type="text" name="title" rows="1" value="{{ $article->title }}" readonly="readonly">
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">文章內容</label>
