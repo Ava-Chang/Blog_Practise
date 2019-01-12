@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\App;
 use App\Post;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -47,9 +48,14 @@ class HomeController extends Controller
     }
 
     public function edit($id)
-    {
-        $article = Post::find($id);
-        return view('edit')
-                ->with('article', $article);
+    {   
+        // dd(Post::find($id)->add_user);
+        if (session()->get('user') == Post::find($id)->add_user) {
+            $article = Post::find($id);
+            return view('edit')
+                    ->with('article', $article);
+        } else {
+            return redirect('/');
+        }
     }
 }

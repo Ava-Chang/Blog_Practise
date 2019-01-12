@@ -12,7 +12,7 @@ class ArticleController extends Controller
     public function store(Request $request)
     {	
     	$request->validate([
-            'title' => 'required|min:3',
+            'title' => 'required',
             'content' => 'required',
         ]);
     	$title = $request->input('title');
@@ -23,6 +23,7 @@ class ArticleController extends Controller
             'content' => $content,
         	'add_user' => Auth::user()->name
         	]);
+        
         return redirect('/');
     }
 
@@ -42,9 +43,13 @@ class ArticleController extends Controller
 
     public function delete($id)
     {
-    	$articleData = Post::find($id);
-    	$articleData->delete();
+    	if (session()->get('user') == Post::find($id)->add_user) {
+            $articleData = Post::find($id);
+    	   $articleData->delete();
 
-    	return redirect('/');
+    	   return redirect('/');
+        } else {
+            return redirect('/');
+        }
     }
 }
