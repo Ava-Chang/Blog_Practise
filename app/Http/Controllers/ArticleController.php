@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Entities\Post;
+use App\Http\Requests\BlogPostRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Http\Requests\BlogPostRequest;
 
 class ArticleController extends Controller
 {
