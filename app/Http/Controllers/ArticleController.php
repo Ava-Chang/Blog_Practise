@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
-use App\User;
+use App\Entities\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -45,7 +44,7 @@ class ArticleController extends Controller
     {
     	if (session()->get('user') == Post::find($id)->add_user) {
             $articleData = Post::find($id);
-    	   $articleData->delete();
+    	    $articleData->delete();
 
     	   return redirect('/');
         } else {

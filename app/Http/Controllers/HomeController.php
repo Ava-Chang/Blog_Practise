@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\App;
-use App\Post;
-use App\User;
+use App\Entities\Post;
 
 class HomeController extends Controller
 {
