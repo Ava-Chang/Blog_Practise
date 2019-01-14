@@ -5,17 +5,14 @@ namespace App\Http\Controllers;
 use App\Entities\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Requests\BlogPostRequest;
 
 class ArticleController extends Controller
 {
-    public function store(Request $request)
+    public function store(BlogPostRequest $request)
     {	
-    	$request->validate([
-            'title' => 'required',
-            'content' => 'required',
-        ]);
-    	$title = $request->input('title');
-    	$content = $request->input('content');
+    	$title = $request->title;
+    	$content = $request->content;
         $postData = Post::create(
             [
             'title' => $title,
@@ -26,12 +23,8 @@ class ArticleController extends Controller
         return redirect('/');
     }
 
-    public function edit(Request $request, $id)
+    public function edit(BlogPostRequest $request, $id)
     {
-    	$request->validate([
-            'title' => 'required|min:3',
-            'content' => 'required',
-        ]);
     	$articleData = Post::find($id);
     	$articleData->title = $request->title;
     	$articleData->content = $request->content;
