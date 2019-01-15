@@ -13,8 +13,8 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        <div class="btn-group" role="group" aria-label="Basic example">
-                            <h4>{{ $blogData->title }}</h4>
+                        <h4>{{ $blogData->title }}</h4>
+                        <div style="float:right" class="btn-group" role="group" aria-label="Basic example">
                             @if ($sessionUser == $blogData->add_user)
                                 <a href="{{ URL::to('post/' . $blogData->id . '/edit') }}">
                                     <button type="button" class="btn btn-warning">Edit</button>
@@ -24,7 +24,7 @@
                                 </a>
                             @endif
                         </div>
-                            <p>{{ $blogData->updated_at->toFormattedDateString() }} create by {{ $blogData->add_user }}</p>
+                            <p>{{ $blogData->updated_at->toFormattedDateString() }}  by {{ $blogData->add_user }}</p>
                         </div>
                     <div class="card-body">
                        {{ $blogData->content }}
