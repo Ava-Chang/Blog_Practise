@@ -10,9 +10,11 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/blogs.js') }}"></script>
+    <script type="text/javascript" rel="script" src="{{asset('js/app.js')}}"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="//cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
+
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
@@ -34,11 +36,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        
                     </ul>
-
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        @auth
+                            <a class="navbar" href="{{ url('/create') }}">新增文章</a>
+                        @endauth
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
@@ -61,8 +65,8 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{ url('/create') }}">新增文章
-                                    </a>
+                                    {{-- <a class="dropdown-item" href="{{ url('/create') }}">新增文章
+                                    </a> --}}
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf

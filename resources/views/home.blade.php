@@ -27,7 +27,7 @@
                             <p>{{ $blogData->updated_at->toFormattedDateString() }}  by {{ $blogData->add_user }}</p>
                         </div>
                     <div class="card-body">
-                       {{ $blogData->content }}
+                       {!! $blogData->content !!}
                     </div>
                 </div>
             </div>

@@ -10,8 +10,12 @@
                     <input class="form-control" type="text" name="title" rows="1" value="{{ $article->title }}" readonly="readonly">
             </div>
             <div class="form-group">
-                <label for="exampleFormControlTextarea1">文章內容</label>
-                    <textarea class="form-control" type="text" name="content" rows="3">{{ $article->content }}</textarea>
+                <textarea name='content' id='editor1' rows="10" cols="80">
+                    {!! $article->content !!}
+                </textarea>
+                    <script>
+                        CKEDITOR.replace('editor1');
+                    </script>
             </div>
             <button type="submit" class="btn btn-primary">
                 更新文章

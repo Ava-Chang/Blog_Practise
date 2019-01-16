@@ -11,7 +11,10 @@
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">文章內容</label>
-                    <textarea class="form-control" type="text" name="content" rows="3"></textarea>
+                    <textarea name='content' id='editor1' rows="10" cols="80"></textarea>
+                    <script>
+                        CKEDITOR.replace('editor1');
+                    </script>
             </div>
             <button type="submit" class="btn btn-primary">
                 發佈
