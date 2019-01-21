@@ -4,7 +4,7 @@
 
 ## Getting Started
 ```
-git clone https://gitlab.com/future3payGroup/blog_demo.git
+git clone https://github.com/Ava-Chang/Blog_Practise.git
 ```
 
 ```
