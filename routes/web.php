@@ -11,16 +11,20 @@
 |
 */
 
-Auth::routes();
+Route::group(['middleware' => 'web', 'auth'], function() {
 
-Route::get('/', 'HomeController@index');
+	Auth::routes();
 
-Route::get('create', 'HomeController@create');
+	Route::get('/', 'HomeController@index');
 
-Route::post('create', 'ArticleController@store');
+	Route::get('create', 'HomeController@create');
 
-Route::get('post/{id}/edit', 'HomeController@edit');
+	Route::post('create', 'ArticleController@store');
 
-Route::post('post/{id}/edit', 'ArticleController@edit');
+	Route::get('post/{id}/edit', 'HomeController@edit');
 
-Route::get('post/{id}/delete', 'ArticleController@delete');
+	Route::post('post/{id}/edit', 'ArticleController@edit');
+
+	Route::get('post/{id}/delete', 'ArticleController@delete');
+});
+

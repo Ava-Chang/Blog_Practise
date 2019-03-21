@@ -35,7 +35,7 @@ class ArticleController extends Controller
 
     public function delete($id)
     {
-    	if (session()->get('user') == Post::find($id)->add_user) {
+    	if (Auth::user()->name == Post::find($id)->add_user) {
             $articleData = Post::find($id);
     	    $articleData->delete();
 

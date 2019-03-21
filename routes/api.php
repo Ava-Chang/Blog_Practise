@@ -17,4 +17,6 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
-Route::get('/getPost', 'Api\getPostController@indexApi');
+Route::get('getPost', 'Api\getPostController@indexApi');
+
+Route::post('create','Api\getPostController@createApi');
