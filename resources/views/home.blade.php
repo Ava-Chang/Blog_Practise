@@ -26,7 +26,11 @@
                                 @endif
                             @endif
                         </div>
-                            <p>{{ $blog->updated_at->toFormattedDateString() }}  by {{ $blog->add_user }}</p>
+                            @if( $blog->created_at != $blog->updated_at )
+                                <p>updated at {{ $blog->updated_at->toFormattedDateString() }}  by {{ $blog->add_user }}</p>
+                            @else
+                                <p>{{ $blog->updated_at->toFormattedDateString() }}  by {{ $blog->add_user }}</p>
+                            @endif
                         </div>
                     <div class="card-body">
                        {!! $blog->content !!}

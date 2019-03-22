@@ -37,7 +37,7 @@ class PostService{
 
 	public function addPost($params)
 	{
-		$this->postRepository->addArticle($params);
+		return $this->postRepository->addArticle($params);
 	}
 
 	public function delePost($id)

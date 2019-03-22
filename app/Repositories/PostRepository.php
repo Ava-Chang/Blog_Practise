@@ -31,11 +31,11 @@ class PostRepository
 
 	public function addArticle($params)
 	{
-		Post::create([
-            'title' => $params['title'],
-            'content' => $params['content'],
-            'add_user' => Auth::user()->name
-            ]);
+		return Post::create([
+            	'title' => $params['title'],
+            	'content' => $params['content'],
+            	'add_user' => Auth::user()->name
+            	]);
 	}
 
 	public function deleteArticle($id)
