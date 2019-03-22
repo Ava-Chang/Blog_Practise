@@ -17,10 +17,10 @@
                         <div style="float:right" class="btn-group" role="group" aria-label="Basic example">
                             @if(Auth::user())
                                 @if (Auth::user()->name == $blog->add_user)
-                                    <a href="{{ URL::to('post/' . $blog->id . '/edit') }}">
+                                    <a href="{{ URL::to('post/edit/' . $blog->id ) }}">
                                         <button type="button" class="btn btn-warning">Edit</button>
                                     </a>&nbsp;
-                                    <a href="{{ URL::to('post/' . $blog->id . '/delete') }}">
+                                    <a href="{{ URL::to('post/delete/' . $blog->id ) }}">
                                         <button type="button" class="btn btn-danger">Delete</button>
                                     </a>
                                 @endif

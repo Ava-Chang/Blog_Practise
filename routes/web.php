@@ -15,16 +15,16 @@ Route::group(['middleware' => 'web', 'auth'], function() {
 
 	Auth::routes();
 
-	Route::get('/', 'HomeController@index');
+	Route::get('/', 'PostController@indexPage');
 
-	Route::get('create', 'HomeController@create');
+	Route::get('create', 'PostController@createPage');
 
-	Route::post('create', 'ArticleController@store');
+	Route::post('create', 'PostController@createPost');
 
-	Route::get('post/{id}/edit', 'HomeController@edit');
+	Route::get('post/edit/{id?}', 'PostController@editPage');
 
-	Route::post('post/{id}/edit', 'ArticleController@edit');
+	Route::post('post/edit/{id?}', 'PostController@editPost');
 
-	Route::get('post/{id}/delete', 'ArticleController@delete');
+	Route::get('post/delete/{id?}', 'PostController@deletePost');
 });
 

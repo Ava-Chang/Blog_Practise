@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="container">
-        <form action='edit' method="Post" accept-charset="utf-8">
+        <form action='{{ $article->id }}' method="Post" accept-charset="utf-8">
             @csrf
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">標題</label>
