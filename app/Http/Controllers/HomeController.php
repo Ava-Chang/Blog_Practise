@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-// use Illuminate\Support\Facades\App;
-use App\Entities\Post;
+use App\Services\BlogService;
 
 class HomeController extends Controller
 {
@@ -20,9 +18,16 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    protected $blogService = null;
+
+    function __construct(BlogService $blogService)
+    {
+        $this->blogService = $blogService;
+    }
+
     public function index()
-    { 
-        $blogs = Post::all();
+    {   
+        $blogs = $this->blogService->getAllPost();
         return view('home')
                 ->with('blogs', $blogs);
     }
@@ -32,10 +37,11 @@ class HomeController extends Controller
         return view('create');
     }
 
-    public function edit($id)
+    public function edit($id = null)
     {   
-        if (Auth::user()->name == Post::find($id)->add_user) {
-            $article = Post::find($id);
+        $checkPoster = $this->blogService->checkPoster($id);
+        if ($checkPoster) {
+            $article = $this->blogService->getAllPost($id);
             return view('edit')
                     ->with('article', $article);
         } else {
