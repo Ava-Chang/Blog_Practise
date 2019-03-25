@@ -11,7 +11,8 @@ class PostRepository
 		if ($id) {
 			return Post::find($id);
 		} else{
-			return Post::all();
+			return Post::orderBy('updated_at', 'desc')
+						->get();
 		}
 	}
 
@@ -23,10 +24,10 @@ class PostRepository
 	public function updateArticle($params, $id)
 	{
 		return Post::where('id', $id)
-			->update([
-				'title' => $params['title'],
-				'content' => $params['content']
-			]);
+					->update([
+						'title' => $params['title'],
+						'content' => $params['content']
+					]);
 	}
 
 	public function addArticle($params)
