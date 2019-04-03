@@ -11,23 +11,21 @@
 |
 */
 
-Route::group(['middleware' => 'web', 'auth'], function() {
+Route::group(['middleware' => 'web'], function() {
 	Auth::routes();
 
 	Route::get('/', 'PostController@indexPage');
 });
 
-Route::group(['middleware' => 'auth'], function(){
-	Route::get('create', 'PostController@createPage');
+Route::group(['middleware' => 'auth'], function() {
+	Route::get('/create', 'PostController@createPage');
 
-	Route::post('create', 'PostController@createPost');
+	Route::post('/create', 'PostController@createPost');
 
-	Route::get('post/edit/{id?}', 'PostController@editPage');
+	Route::get('/post/edit/{id}', 'PostController@editPage')->where(['id' => '[0-9]+']);
 
-	Route::post('post/edit/{id?}', 'PostController@editPost');
+	Route::post('/post/edit/{id}', 'PostController@editPost')->where(['id' => '[0-9]+']);
 
-	Route::get('post/delete/{id?}', 'PostController@deletePost');
+	Route::get('/post/delete/{id}', 'PostController@deletePost')->where(['id' => '[0-9]+']);
 });
-	
-
 
