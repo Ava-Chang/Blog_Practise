@@ -12,11 +12,12 @@
 */
 
 Route::group(['middleware' => 'web', 'auth'], function() {
-
 	Auth::routes();
 
 	Route::get('/', 'PostController@indexPage');
+});
 
+Route::group(['middleware' => 'auth'], function(){
 	Route::get('create', 'PostController@createPage');
 
 	Route::post('create', 'PostController@createPost');
@@ -27,4 +28,6 @@ Route::group(['middleware' => 'web', 'auth'], function() {
 
 	Route::get('post/delete/{id?}', 'PostController@deletePost');
 });
+	
+
 

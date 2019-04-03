@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace App\Services;
 
 use App\Repositories\PostRepository;
@@ -14,20 +14,14 @@ class PostService{
 		$this->postRepository = $postRepository;
 	}
 
-	public function getAllPost($id = null)
+	public function getAllPost()
 	{
-		return $this->postRepository->getPost($id);
+		return $this->postRepository->getPost();
 	}
 
-	public function checkPoster($id = null)
-	{	
-		$authUser = $this->postRepository->getAuth();
-		$post = $this->postRepository->getPost($id);
-		if ($authUser->name == $post->add_user) {
-			return true;
-		} else{
-			return false;
-		}
+	public function checkPoster($id, $user)
+	{
+		return $this->postRepository->getMemberPost($id, $user);
 	}
 
 	public function updatePost($params, $id)
@@ -35,9 +29,9 @@ class PostService{
 		$this->postRepository->updateArticle($params, $id);
 	}
 
-	public function addPost($params)
+	public function addPost($params, $user)
 	{
-		return $this->postRepository->addArticle($params);
+		$this->postRepository->addArticle($params, $user);
 	}
 
 	public function delePost($id)

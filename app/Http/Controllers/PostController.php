@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\BlogPostRequest;
 use App\Services\PostService;
+use Auth;
 
 class PostController extends Controller
 {
@@ -27,10 +28,10 @@ class PostController extends Controller
     }
 
     public function indexPage()
-    {   
+    {
         $blogs = $this->postService->getAllPost();
-        return view('home')
-                ->with('blogs', $blogs);
+
+        return view('home')->with('blogs', $blogs);
     }
 
     public function createPage()
@@ -38,37 +39,37 @@ class PostController extends Controller
         return view('create');
     }
 
-    public function editPage($id = null)
-    {   
-        $checkPoster = $this->postService->checkPoster($id);
-        if ($checkPoster) {
-            $article = $this->postService->getAllPost($id);
-            return view('edit')
-                    ->with('article', $article);
+    public function editPage($id)
+    {
+        $article = $this->postService->checkPoster($id, Auth::user()->name);
+
+        if ($article) {
+            return view('edit')->with('article', $article);
         } else {
             return redirect('/');
         }
     }
 
     public function createPost(BlogPostRequest $request)
-    {   
-        $this->postService->addPost($request->all());
+    {
+        $this->postService->addPost($request->all(), Auth::user()->name);
+
         return redirect('/');
     }
 
 
-    public function editPost(BlogPostRequest $request, $id = null)
-    {   
-        $articleData = $this->postService->getAllPost($id);
+    public function editPost(BlogPostRequest $request, $id)
+    {
+        $articleData = $this->postService->checkPoster($id, Auth::user()->name);
         if ($articleData) {
             $this->postService->updatePost($request->all(), $id);
         }
         return redirect('/');
     }
 
-     public function deletePost($id = null)
-    {   
-        $checkPoster = $this->postService->checkPoster($id);
+     public function deletePost($id)
+    {
+        $checkPoster = $this->postService->checkPoster($id, Auth::user()->name);
         if ($checkPoster) {
             $this->postService->delePost($id);
             return redirect('/');

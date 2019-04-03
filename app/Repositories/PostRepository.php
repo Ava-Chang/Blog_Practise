@@ -1,24 +1,21 @@
-<?php 
+<?php
+
 namespace App\Repositories;
 
 use App\Entities\Post;
-use Auth;
 
 class PostRepository
 {
 	public function getPost($id = null)
-	{	
-		if ($id) {
-			return Post::find($id);
-		} else{
-			return Post::orderBy('updated_at', 'desc')
-						->get();
-		}
+	{
+		return Post::orderBy('updated_at', 'desc')->get();
 	}
 
-	public function getAuth()
+	public function getMemberPost($id, $user)
 	{
-		return Auth::user();
+		return Post::where('id', $id)
+					->where('add_user', $user)
+					->first();
 	}
 
 	public function updateArticle($params, $id)
@@ -30,22 +27,17 @@ class PostRepository
 					]);
 	}
 
-	public function addArticle($params)
+	public function addArticle($params, $user)
 	{
-		return Post::create([
-            	'title' => $params['title'],
-            	'content' => $params['content'],
-            	'add_user' => Auth::user()->name
-            	]);
+		Post::create([
+        	'title' => $params['title'],
+        	'content' => $params['content'],
+        	'add_user' => $user
+        ]);
 	}
 
 	public function deleteArticle($id)
 	{
-		Post::where('id', $id)
-			->delete();
+		Post::where('id', $id)->delete();
 	}
-
 }
-
-
- ?>
