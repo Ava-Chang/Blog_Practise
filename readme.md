@@ -12,7 +12,7 @@ composer install
 ```
 
 ```
-cp env.example .env
+cp .env.example .env
 ```
 
 ```
