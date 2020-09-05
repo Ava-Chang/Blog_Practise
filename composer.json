@@ -12,7 +12,8 @@
         "caouecs/laravel-lang": "~3.0",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.7.*",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "symfony/http-foundation": "4.2.12"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
